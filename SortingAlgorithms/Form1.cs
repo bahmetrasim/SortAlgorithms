@@ -32,18 +32,38 @@ namespace SortingAlgorithms
             }
             if (choice == "B")
             {
+                bool isswap;
+                do
+                {
+                    isswap = false;
+                    for (int i = 0; i < textboxlist.Count - 1; i++)
+                    {
+                        if (textboxlist[i] > textboxlist[i + 1])
+                        {
+                            swap(textboxlist, i, i + 1);
+                            isswap = true;
+                        }
+                    }
+                }
+                while (isswap == true);
 
             }
             else
             {
 
             }
-            textboxlist.Sort();
             foreach (var nbrs in textboxlist)
             {
                 sortedlist.Text = sortedlist.Text + nbrs + "; ";
             }
         }
-       
+        public List<int> swap(List<int> tochange, int bigorder, int smallorder)
+        {
+            int temp = tochange[bigorder];
+            tochange[bigorder] = tochange[smallorder];
+            tochange[smallorder] = temp;
+            return tochange;
+        }
+
     }
 }
