@@ -32,6 +32,7 @@
             this.mergesort = new System.Windows.Forms.Button();
             this.bubblesort = new System.Windows.Forms.Button();
             this.sortedlist = new System.Windows.Forms.Label();
+            this.time = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox1
@@ -63,16 +64,26 @@
             // sortedlist
             // 
             this.sortedlist.AutoSize = true;
-            this.sortedlist.Location = new System.Drawing.Point(14, 191);
+            this.sortedlist.Location = new System.Drawing.Point(12, 189);
             this.sortedlist.Name = "sortedlist";
             this.sortedlist.Size = new System.Drawing.Size(0, 13);
             this.sortedlist.TabIndex = 3;
+            // 
+            // time
+            // 
+            this.time.AutoSize = true;
+            this.time.Location = new System.Drawing.Point(12, 225);
+            this.time.Name = "time";
+            this.time.Size = new System.Drawing.Size(26, 13);
+            this.time.TabIndex = 4;
+            this.time.Text = "time";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.time);
             this.Controls.Add(this.sortedlist);
             this.Controls.Add(this.bubblesort);
             this.Controls.Add(this.mergesort);
@@ -90,6 +101,7 @@
         private System.Windows.Forms.Button mergesort;
         private System.Windows.Forms.Button bubblesort;
         private System.Windows.Forms.Label sortedlist;
+        private System.Windows.Forms.Label time;
     }
 }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace SortingAlgorithms
     public partial class Form1 : Form
     {
         List<List<int>> mini = new List<List<int>>();
+        Stopwatch stopwatch = new Stopwatch();
         public Form1()
         {
             InitializeComponent();
@@ -25,8 +27,8 @@ namespace SortingAlgorithms
             Button name = (Button)sender;
             string choice = name.Text.Substring(0, 1);
             List<int> textboxlist = new List<int>();
-            List<List<int>> lists = new List<List<int>>();
             string[] txtNumbers = textBox1.Text.Split(';');
+            stopwatch.Reset();
 
             foreach (string nbr in txtNumbers)
             {
@@ -36,6 +38,7 @@ namespace SortingAlgorithms
             if (choice == "B")
             {
                 bool isswap;
+                stopwatch.Start();
                 do
                 {
                     isswap = false;
@@ -49,16 +52,21 @@ namespace SortingAlgorithms
                     }
                 }
                 while (isswap == true);
-
+                stopwatch.Stop();
+                time.Text = stopwatch.Elapsed.TotalSeconds.ToString();
             }
             else
             {
-                tomergesort(dividelist(textboxlist));
+                stopwatch.Start();
+                textboxlist = tomergesort(dividelist(textboxlist));
+                stopwatch.Stop();
+                time.Text = stopwatch.Elapsed.TotalSeconds.ToString();
             }
             foreach (var nbrs in textboxlist)
             {
                 sortedlist.Text = sortedlist.Text + nbrs + "; ";
             }
+            
         }
         public List<int> swap(List<int> tochange, int bigorder, int smallorder)
         {
@@ -100,5 +108,6 @@ namespace SortingAlgorithms
             List<int> final = new List<int>();
             return final; 
         }
+
     }
 }
