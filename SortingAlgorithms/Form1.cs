@@ -20,11 +20,13 @@ namespace SortingAlgorithms
             InitializeComponent();
             Controls["mergesort"].MouseClick += Buttons_Click;
             Controls["bubblesort"].MouseClick += Buttons_Click;
-            
+
         }
         private void Buttons_Click(object sender, EventArgs e)
         {
             Button name = (Button)sender;
+            sortedlist.Text = "";
+            mini.Clear();
             string choice = name.Text.Substring(0, 1);
             List<int> textboxlist = new List<int>();
             string[] txtNumbers = textBox1.Text.Split(';');
@@ -66,7 +68,7 @@ namespace SortingAlgorithms
             {
                 sortedlist.Text = sortedlist.Text + nbrs + "; ";
             }
-            
+
         }
         public List<int> swap(List<int> tochange, int bigorder, int smallorder)
         {
@@ -77,8 +79,8 @@ namespace SortingAlgorithms
         }
         public List<List<int>> dividelist(List<int> todivide)
         {
-            int newcount = (todivide.Count / 2) % 2 == 0 ? (todivide.Count / 2) : (todivide.Count / 2)+1;
-            
+            int newcount = (todivide.Count / 2) % 1 == 0 ? (todivide.Count / 2) : (todivide.Count / 2) + 1;
+
             if (todivide.Count == 1)
             {
                 mini.Add(todivide);
@@ -95,18 +97,58 @@ namespace SortingAlgorithms
             }
             else
             {
-
                 dividelist(todivide.GetRange(0, newcount));
-                dividelist(todivide.GetRange(newcount, todivide.Count-newcount));
+                dividelist(todivide.GetRange(newcount, todivide.Count - newcount));
                 return mini;
-
             }
 
         }
         public List<int> tomergesort(List<List<int>> fromdivide)
         {
             List<int> final = new List<int>();
-            return final; 
+            int n = 0;
+            for (int i = 0; i < fromdivide.Count / 2; i++)
+            {
+                i = n;
+                for (int j = 0; j < fromdivide[i + 1].Count; j++)
+                {
+                    if (fromdivide[i][n] > fromdivide[i + 1][j])
+                    {
+                        final.Add(fromdivide[i + 1][j]);
+                        //fromdivide[i + 1].Remove(j);
+                    }
+                    else
+                    {
+                        if (n == fromdivide[i].Count - 1 && final.Count + 1 == fromdivide[i].Count + fromdivide[i + 1].Count)
+                        {
+                            final.Add(fromdivide[i][n]);
+                            break;
+                        }
+                        else if (n == fromdivide[i].Count - 1)
+                        {
+                            final.Add(fromdivide[i][n]);
+                            List<int> temp = new List<int>();
+                            temp = fromdivide[i + 1].GetRange(j, fromdivide[i + 1].Count - j);
+                            final.AddRange(temp);
+                            break;
+                        }
+                        else
+                        {
+                            final.Add(fromdivide[i][n]);
+                            n++;
+                            j--;
+                        }
+
+                    }
+                }
+                if (final.Count != fromdivide[i].Count + fromdivide[i + 1].Count)
+                {
+                    List<int> temp = new List<int>();
+                    temp = fromdivide[i].GetRange(n, fromdivide[i].Count - n);
+                    final.AddRange(temp);
+                }
+            }
+            return final;
         }
 
     }
