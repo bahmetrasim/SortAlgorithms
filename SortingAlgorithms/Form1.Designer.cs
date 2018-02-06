@@ -40,12 +40,12 @@
             this.textBox1.Location = new System.Drawing.Point(1, 12);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(283, 89);
+            this.textBox1.Size = new System.Drawing.Size(677, 89);
             this.textBox1.TabIndex = 0;
             // 
             // mergesort
             // 
-            this.mergesort.Location = new System.Drawing.Point(12, 126);
+            this.mergesort.Location = new System.Drawing.Point(6, 107);
             this.mergesort.Name = "mergesort";
             this.mergesort.Size = new System.Drawing.Size(116, 48);
             this.mergesort.TabIndex = 1;
@@ -54,7 +54,7 @@
             // 
             // bubblesort
             // 
-            this.bubblesort.Location = new System.Drawing.Point(156, 126);
+            this.bubblesort.Location = new System.Drawing.Point(150, 107);
             this.bubblesort.Name = "bubblesort";
             this.bubblesort.Size = new System.Drawing.Size(116, 48);
             this.bubblesort.TabIndex = 2;
@@ -63,8 +63,12 @@
             // 
             // sortedlist
             // 
+            this.sortedlist.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sortedlist.AutoEllipsis = true;
             this.sortedlist.AutoSize = true;
-            this.sortedlist.Location = new System.Drawing.Point(12, 189);
+            this.sortedlist.Location = new System.Drawing.Point(12, 167);
+            this.sortedlist.MaximumSize = new System.Drawing.Size(680, 75);
             this.sortedlist.Name = "sortedlist";
             this.sortedlist.Size = new System.Drawing.Size(0, 13);
             this.sortedlist.TabIndex = 3;
@@ -72,7 +76,7 @@
             // time
             // 
             this.time.AutoSize = true;
-            this.time.Location = new System.Drawing.Point(12, 225);
+            this.time.Location = new System.Drawing.Point(12, 239);
             this.time.Name = "time";
             this.time.Size = new System.Drawing.Size(26, 13);
             this.time.TabIndex = 4;
@@ -82,7 +86,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(690, 261);
             this.Controls.Add(this.time);
             this.Controls.Add(this.sortedlist);
             this.Controls.Add(this.bubblesort);

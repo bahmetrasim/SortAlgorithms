@@ -37,7 +37,7 @@ namespace SortingAlgorithms
                 int number = int.Parse(nbr);
                 textboxlist.Add(number);
             }
-            if (choice == "B")
+            if (choice != "B")
             {
                 bool isswap;
                 stopwatch.Start();
@@ -55,14 +55,14 @@ namespace SortingAlgorithms
                 }
                 while (isswap == true);
                 stopwatch.Stop();
-                time.Text = stopwatch.Elapsed.TotalSeconds.ToString();
+                time.Text = stopwatch.Elapsed.ToString();
             }
             else
             {
                 stopwatch.Start();
                 textboxlist = tomergesort(dividelist(textboxlist));
                 stopwatch.Stop();
-                time.Text = stopwatch.Elapsed.TotalSeconds.ToString();
+                time.Text = stopwatch.Elapsed.ToString();
             }
             foreach (var nbrs in textboxlist)
             {
@@ -105,51 +105,65 @@ namespace SortingAlgorithms
         }
         public List<int> tomergesort(List<List<int>> fromdivide)
         {
-            List<int> final = new List<int>();
-            int n = 0;
-            for (int i = 0; i < fromdivide.Count / 2; i++)
+            
+            List<List<int>> finallists = new List<List<int>>();
+            if (fromdivide.Count == 1)
             {
-                i = n;
-                for (int j = 0; j < fromdivide[i + 1].Count; j++)
+                return fromdivide[0];
+            }
+            else
+            {
+                for (int i = 0; i < fromdivide.Count; i += 2)
                 {
-                    if (fromdivide[i][n] > fromdivide[i + 1][j])
+                    List<int> final = new List<int>();
+                    int n = 0;
+                    if (i + 2 > fromdivide.Count)
                     {
-                        final.Add(fromdivide[i + 1][j]);
-                        //fromdivide[i + 1].Remove(j);
+                        finallists.Add(fromdivide[i]);
                     }
                     else
                     {
-                        if (n == fromdivide[i].Count - 1 && final.Count + 1 == fromdivide[i].Count + fromdivide[i + 1].Count)
+                        for (int j = 0; j < fromdivide[i + 1].Count; j++)
                         {
-                            final.Add(fromdivide[i][n]);
-                            break;
-                        }
-                        else if (n == fromdivide[i].Count - 1)
-                        {
-                            final.Add(fromdivide[i][n]);
-                            List<int> temp = new List<int>();
-                            temp = fromdivide[i + 1].GetRange(j, fromdivide[i + 1].Count - j);
-                            final.AddRange(temp);
-                            break;
-                        }
-                        else
-                        {
-                            final.Add(fromdivide[i][n]);
-                            n++;
-                            j--;
-                        }
+                            if (fromdivide[i][n] > fromdivide[i + 1][j])
+                            {
+                                final.Add(fromdivide[i + 1][j]);
+                            }
+                            else
+                            {
+                                if (n == fromdivide[i].Count - 1 && final.Count + 1 == fromdivide[i].Count + fromdivide[i + 1].Count)
+                                {
+                                    final.Add(fromdivide[i][n]);
+                                    break;
+                                }
+                                else if (n == fromdivide[i].Count - 1)
+                                {
+                                    final.Add(fromdivide[i][n]);
+                                    List<int> temp = new List<int>();
+                                    temp = fromdivide[i + 1].GetRange(j, fromdivide[i + 1].Count - j);
+                                    final.AddRange(temp);
+                                    break;
+                                }
+                                else
+                                {
+                                    final.Add(fromdivide[i][n]);
+                                    n++;
+                                    j--;
+                                }
 
+                            }
+                        }
+                        if (final.Count != fromdivide[i].Count + fromdivide[i + 1].Count)
+                        {
+                            List<int> temp = new List<int>();
+                            temp = fromdivide[i].GetRange(n, fromdivide[i].Count - n);
+                            final.AddRange(temp);
+                        }
+                        finallists.Add(final);
                     }
                 }
-                if (final.Count != fromdivide[i].Count + fromdivide[i + 1].Count)
-                {
-                    List<int> temp = new List<int>();
-                    temp = fromdivide[i].GetRange(n, fromdivide[i].Count - n);
-                    final.AddRange(temp);
-                }
+                return tomergesort(finallists);
             }
-            return final;
         }
-
     }
 }
