@@ -40,21 +40,8 @@ namespace SortingAlgorithms
             }
             if (choice != "B")
             {
-                bool isswap;
                 stopwatch.Start();
-                do
-                {
-                    isswap = false;
-                    for (int i = 0; i < textboxlist.Count - 1; i++)
-                    {
-                        if (textboxlist[i] > textboxlist[i + 1])
-                        {
-                            swap(textboxlist, i, i + 1);
-                            isswap = true;
-                        }
-                    }
-                }
-                while (isswap == true);
+                textboxlist = bubble(textboxlist);
                 stopwatch.Stop();
                 time.Text = stopwatch.Elapsed.ToString();
             }
@@ -167,6 +154,24 @@ namespace SortingAlgorithms
                 }
                 return tomergesort(finallists);
             }
+        }
+        public List<int> bubble (List<int> textbox)
+        {
+            bool isswap;
+            do
+            {
+                isswap = false;
+                for (int i = 0; i < textbox.Count - 1; i++)
+                {
+                    if (textbox[i] > textbox[i + 1])
+                    {
+                        swap(textbox, i, i + 1);
+                        isswap = true;
+                    }
+                }
+            }
+            while (isswap == true);
+            return textbox;
         }
     }
 }
