@@ -15,6 +15,7 @@ namespace SortingAlgorithms
     {
         List<List<int>> mini = new List<List<int>>();
         Stopwatch stopwatch = new Stopwatch();
+        Stopwatch stopwatch2 = new Stopwatch();
         public Form1()
         {
             InitializeComponent();
@@ -64,11 +65,13 @@ namespace SortingAlgorithms
                 stopwatch.Stop();
                 time.Text = stopwatch.Elapsed.ToString();
             }
+            stopwatch2.Reset();
+            stopwatch2.Start();
             foreach (var nbrs in textboxlist)
             {
                 sortedlist.Text = sortedlist.Text + nbrs + "; ";
             }
-
+            stopwatch2.Stop();
         }
         public List<int> swap(List<int> tochange, int bigorder, int smallorder)
         {
